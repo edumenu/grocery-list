@@ -14390,6 +14390,10 @@ body {
                     inset -4px -4px 10px #fbfcff;
 }
 
+.filter-green{
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

@@ -45,3 +45,7 @@ body {
                     inset -4px -4px 10px #fbfcff;
     }
   }
+
+  .input_icon{
+    font-family:Arial, FontAwesome
+  }

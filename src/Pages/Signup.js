@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/images/groceryImage.png';
+import gmail from '../assets/images/gmail.png';
 
 function Login() {
     return (
@@ -59,7 +60,8 @@ function Login() {
                             <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit">
                                 Sign up
                             </button>
-                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-red-500 font-bold py-4 px-8 mx-6" type="submit">
+                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-red-700 font-bold py-4 px-8 mx-6 my-4" type="submit">
+                                <img className="w-6 mr-2 float-left" src={gmail} alt="gmail" />
                                 Sign up with gmail
                             </button>
                             <h2 className="mt-4 text-gray-700">Do you already have an account? <span className="text-green-500">Login here</span></h2>
