@@ -3,3 +3,45 @@
 @tailwind components;
 
 @tailwind utilities;
+
+body {
+    background-color: #e6e7ee;
+    font-family: Candara;
+}
+  
+.card_element {
+    border-radius: 76px;
+    background: #e6e7ee;
+    box-shadow:  6px 6px 12px #c4c4ca, 
+                -6px -6px 12px #ffffff;
+}
+
+.input_element {
+    border-radius: 4px;
+    background: #e6e7ee;
+    box-shadow: inset 2px 2px 6px #b6b6bc, 
+                inset -2px -2px 6px #ffffff; 
+}
+
+.button{
+    border-radius: 11px;
+    background: #e6e7ee;
+    box-shadow:  5px 5px 10px #d6d7dd, 
+                -5px -5px 10px #ffffff;
+}
+
+/* .button_hover{
+    border-radius: 10px;
+    background: linear-gradient(145deg, #cfd0d6, #f6f7ff);
+    box-shadow:  5px 5px 8px #a8a9ae, 
+                -5px -5px 8px #ffffff;
+} */
+
+@variants hover {
+    .button_hover {
+        border-radius: 10px;
+        background: #e6e7ee;
+        box-shadow: inset 4px 4px 10px #d1d2d9, 
+                    inset -4px -4px 10px #fbfcff;
+    }
+  }

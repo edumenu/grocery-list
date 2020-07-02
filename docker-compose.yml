@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:  # containers. same as docker run
+  react-todo: # a friendly name. this is also DNS name inside network
+    image: edumenu/react-app
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build:
+        context: .
+        dockerfile: Dockerfile
+    ports: 
+      - "3001:3000"
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    environment:
+      - CHOKIDAR_USEPOLLING=true
