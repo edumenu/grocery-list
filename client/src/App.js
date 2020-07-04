@@ -13,10 +13,10 @@ export class App extends Component {
         return (
             // <h1>Hello World!</h1>
             // <Header />
-            <Dashboard />
+            // <Dashboard />
             // <Profile />
             // <Login />
-            // <Signup />
+            <Signup />
             // <About />
         )
     }

@@ -14352,8 +14352,8 @@ body {
 .card_element {
   border-radius: 10px;
   background: #e6e7ee;
-  box-shadow:  5px 5px 10px #d6d7dd, 
-                -5px -5px 10px #f6f7ff;
+  box-shadow:  5px 5px 14px #d6d7dd, 
+                -5px -5px 14px #f6f7ff;
 }
 
 .card_element2 {
@@ -14366,23 +14366,23 @@ body {
 .card_element3 {
   border-radius: 10px;
   background: linear-gradient(145deg, #f6f7ff, #cfd0d6);
-  box-shadow:  5px 5px 10px #afb0b5, 
-                -5px -5px 10px #fdfeff;
+  box-shadow:  5px 5px 14px #afb0b5, 
+                -5px -5px 14px #fdfeff;
 }
 
 .card_element4 {
   border-radius: 10px;
   background: linear-gradient(145deg, #cfd0d6, #f6f7ff);
-  box-shadow:  5px 5px 10px #afb0b5, 
-                -5px -5px 10px #fdfeff;
+  box-shadow:  5px 5px 26px #afb0b5, 
+                -5px -5px 26px #fdfeff;
 }
 
-.input_element {
-  border-radius: 4px;
-  background: #e6e7ee;
-  box-shadow: inset 2px 2px 6px #b6b6bc, 
-                inset -2px -2px 6px #ffffff;
-}
+/* .input_element {
+    border-radius: 4px;
+    background: #e6e7ee;
+    box-shadow: inset 2px 2px 6px #b6b6bc, 
+                inset -2px -2px 6px #ffffff; 
+} */
 
 .card_element2 {
   border-radius: 10px;

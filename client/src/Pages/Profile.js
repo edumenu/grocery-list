@@ -13,7 +13,7 @@ function Login() {
                                 First name
                             </label>
                             {/* <div className="mt-1 relative"> */}
-                                <input name="firstname" id="firstname" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="firstname" id="firstname" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                             {/* <strong className="text-red-500 text-xs italic">username is require</strong> */}
                         </div>
@@ -22,7 +22,7 @@ function Login() {
                                 Last name
                             </label>
                             {/* <div className="mt-1 relative"> */}
-                                <input name="lastname" id="lastname" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="lastname" id="lastname" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                             {/* <strong className="text-red-500 text-xs italic">username is require</strong> */}
                         </div>
@@ -31,7 +31,7 @@ function Login() {
                                 Username
                             </label>
                             {/* <div className="mt-1 relative"> */}
-                                <input name="username" id="username" placeholder="example@gmail.com" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="username" id="username" placeholder="example@gmail.com" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                             {/* <strong className="text-red-500 text-xs italic">username is require</strong> */}
                         </div>
@@ -41,7 +41,7 @@ function Login() {
                                 Password
                             </label>
                             {/* <div className="mt-1 relative rounded-md shadow-sm"> */}
-                                <input name="password" id="password" type="password" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="password" id="password" type="password" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                         </div>
 
@@ -57,10 +57,10 @@ function Login() {
 
                         <div className="mb-4 text-center">
                             {/* <button className="transition duration-500 button hover:bg-orange-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="submit"> */}
-                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit">
+                            <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit">
                                 Update
                             </button>
-                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-red-500 font-bold py-4 px-8 mx-6" type="submit">
+                            <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-red-500 font-bold py-4 px-8 mx-6" type="submit">
                                 Delete
                             </button>
                         </div>

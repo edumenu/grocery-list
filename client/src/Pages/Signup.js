@@ -15,7 +15,7 @@ function Login() {
                                 <span className="text-red-500">&nbsp;*</span>
                                 First name
                             </label>
-                                <input name="firstname" id="firstname" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="firstname" id="firstname" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                         </div>
 
                         <div className="mb-8">
@@ -24,7 +24,7 @@ function Login() {
                                 Last name
                             </label>
                             {/* <div className="mt-1 relative rounded-md shadow-sm"> */}
-                                <input name="lastname" id="lastname" type="password" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="lastname" id="lastname" type="password" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                         </div>
                         
@@ -33,7 +33,7 @@ function Login() {
                                 <span className="text-red-500">&nbsp;*</span>
                                 Email
                             </label>
-                                <input name="email" id="email" type="email" placeholder="example@gmail.com" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="email" id="email" type="email" placeholder="example@gmail.com" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                         </div>
 
                         <div className="mb-8">
@@ -42,7 +42,7 @@ function Login() {
                                 Password
                             </label>
                             {/* <div className="mt-1 relative rounded-md shadow-sm"> */}
-                                <input name="password" id="password" type="password" className="input_element block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                                <input name="password" id="password" type="password" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                             {/* </div> */}
                         </div>
 
@@ -57,10 +57,10 @@ function Login() {
                         </div>
 
                         <div className="mb-4 text-center">
-                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit">
+                            <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit">
                                 Sign up
                             </button>
-                            <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-red-700 font-bold py-4 px-8 mx-6 my-4" type="submit">
+                            <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-red-700 font-bold py-4 px-8 mx-6 my-4" type="submit">
                                 <img className="w-6 mr-2 float-left" src={gmail} alt="gmail" />
                                 Sign up with gmail
                             </button>
