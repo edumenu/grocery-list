@@ -7,7 +7,7 @@ function Header() {
     return (
         <nav className="flex items-center justify-between flex-wrap p-6">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
-                <div className="card_element">
+                <div className="card_element4">
                     <img className="mx-auto my-auto w-12" src={logo} alt="logo" />
                 </div>
                 {/* <a href="/" className="font-bold text-white text-xl tracking-tight hover:text-yellow-400">Grocery</a> */}
@@ -20,13 +20,13 @@ function Header() {
             </div>
             <div className="w-full block lg:w-auto md:w-auto sm:auto ">
                 <div className="text-lg lg:flex-grow md:flex-grow sm:flew-grow">
-                    <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-gray-700 font-bold py-2 px-4 mx-2" type="submit">
+                    <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-gray-700 font-bold py-2 px-4 mx-2" type="submit">
                         Profile
               </button>
-                    <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-gray-700 font-bold py-2 px-4 mx-2" type="submit">
+                    <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-gray-700 font-bold py-2 px-4 mx-2" type="submit">
                         About
               </button>
-                    <button className="transition duration-500 button hover:button_hover focus:outline-none focus:shadow-outline text-red-600 font-bold py-2 px-4 mx-2" type="submit">
+                    <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-red-600 font-bold py-2 px-4 mx-2" type="submit">
                         Logout
               </button>
                 </div>
