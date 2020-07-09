@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import Header from '../Components/header'
 
+import Header from '../Components/header'
 import Income from '../Components/Income'
 import Expense from '../Components/Expense'
 import Balance from '../Components/Balance'
 import Weather from '../Components/Weather'
-import Grocery from '../Components/Grocery'
+import GroceryList from '../Components/GroceryList'
 import AddGrocery from '../Components/AddGrocery'
 import CurrentDate from '../Components/CurrentDate'
+import Modal from '../Components/Modal'
+
+import { GlobalProvider } from '../context/GlobalContext';
 
 
 export class Dashboard extends Component {
@@ -15,10 +18,20 @@ export class Dashboard extends Component {
     state = {
         historyButton: true,    // Bool for displaying history list section
         addGroceryButton: false,    // Bool for displaying Add grocery list section
+        modalOpen: false,
+        deleteItem: {},
+        groceryItem: [
+                   {id: 1, item: "Tomatoes", amount: 40}, 
+                   {id: 2, item: "Peanuts", amount: 34}, 
+                   {id: 3, item: "Mangos", amount: -20}, 
+                   {id: 4, item: "Salsa", amount: 22}, 
+                   {id: 5, item: "Pineapples", amount: -12}, 
+                   {id: 5, item: "Milk", amount: -15.34} 
+                ]    // 
     }
 
     componentDidMount() {
-        console.log("Did mount")
+        console.log("mount")
     }
 
     // This function displays history list section
@@ -41,15 +54,28 @@ export class Dashboard extends Component {
         }     
     }
 
+    // Toggle modal state
+    toggleModalOpen = (item) => {
+        // Toggle modal open and close
+        this.setState({
+            modalOpen: !this.state.modalOpen,
+            deleteItem: item
+        })
+    }
+
 
     render() {
 
         // Setting the state values
-        const { historyButton , addGroceryButton } = this.state
+        const { historyButton , addGroceryButton, modalOpen, deleteItem } = this.state
 
         return (
+            
             <div>
+                {/* Header */}
                 <Header />
+                {/* Modal */}
+                <Modal modalOpen={modalOpen} toggleModalOpen={this.toggleModalOpen} deleteItem={deleteItem} />
                 <section className="text-gray-700s mt-8">
                     <div className="container card_element px-2 lg:max-h-screen md:max-h-screen sm:mb-0 md:mb-8 h-1/2 py-8 mx-auto bg-gray-100 flex overflow-hidden">
                         <div className="w-full mx-auto flex flex-wrap">
@@ -76,15 +102,16 @@ export class Dashboard extends Component {
                                     <button onClick={this.changeGroceryAddStatus} className={`flex-grow text-gray-700 focus:outline-none text-lg p-4 ${this.state.addGroceryButton ? "card_element2" : "card_element hover:card_element2"}`} ><i className="text-lg fa fa-cart-plus mr-2" aria-hidden="true"></i>Add Grocery</button>
                                 </div>
                                 {/* Grocery list History */}
-                                <Grocery historyButton={historyButton} />
+                                <GroceryList historyButton={historyButton} toggleModalOpen={this.toggleModalOpen} />
 
                                 {/* Add grocery item */}
-                                <AddGrocery addGroceryButton={addGroceryButton} />
+                                <AddGrocery addGroceryButton={addGroceryButton} changeHistoryListStatus={this.changeHistoryListStatus} />
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
+            
         )
     }
 }
