@@ -6,7 +6,7 @@ function CurrentDate() {
     var today  = new Date();  //Fetching today's date
 
     useEffect(() => {
-        setCurrentDate(today.toLocaleDateString("en-US", options));    // Setting today's current date
+        setCurrentDate(today.toLocaleDateString("en-US", options));    // Setting today's current date on the main page
     }, [])
 
     return (
