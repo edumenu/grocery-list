@@ -82,6 +82,7 @@ export class Dashboard extends Component {
                             {/* Weather, Date, Income, Expense, Balance  */}
                             <div className="lg:w-1/2 w-full lg:pr-10 md:pr-4 p-4 lg:mb-0">
                                 <Weather />
+                                {/* Display current date */}
                                 <CurrentDate />
                                 <div className="container">
                                     <div className="flex flex-wrap mt-12 text-center">
