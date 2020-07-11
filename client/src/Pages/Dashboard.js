@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Header from '../Components/header'
+// import Header from '../Components/header'
 import Income from '../Components/Income'
 import Expense from '../Components/Expense'
 import Balance from '../Components/Balance'
@@ -62,7 +62,7 @@ export class Dashboard extends Component {
             
             <div>
                 {/* Header */}
-                <Header />
+                {/* <Header /> */}
                 {/* Modal */}
                 <Modal modalOpen={modalOpen} toggleModalOpen={this.toggleModalOpen} deleteItem={deleteItem} />
                 <section className="text-gray-700s mt-8">
