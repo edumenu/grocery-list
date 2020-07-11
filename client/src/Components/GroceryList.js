@@ -10,15 +10,13 @@ function GroceryList({ historyButton, toggleModalOpen }) {
     useEffect(() => {
         // Calling the grocery list function
         getGroceryLists();
-        var list_size = 0
-        console.log((groceryLists).length)
     }, [])
 
     return (
         <div className={`history-list overflow-y-auto pb-40 max-h-screen ${historyButton ? "block" : "hidden"}`} >
             {(groceryLists).length > 0 ? groceryLists.map((item, index) => (
                 <GroceryItem key={index} item={item} toggleModalOpen={toggleModalOpen} />
-            )) : <h2 className="text-xl font-bold text-center text-gray-500 mt-12">There are no items in your list</h2>}
+            )) : <h2 className="text-3qxl font-bold text-center text-gray-300 mt-12">There are no items in your list</h2>}
         </div>
     )
 }

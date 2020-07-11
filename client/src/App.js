@@ -15,11 +15,11 @@ export class App extends Component {
         return (
             <GlobalProvider>
                 <Dashboard />
+                 {/* <Profile /> */}
+             {/* <Login /> */}
+             {/* <Signup /> */}
+             {/* <About /> */}
             </GlobalProvider>
-            // <Profile />
-            // <Login />
-            // <Signup />
-            // <About />
         )
     }
 }

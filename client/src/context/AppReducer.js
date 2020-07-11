@@ -24,6 +24,12 @@ export default (state, action) => {
                 ...state,  // Creating a new state
                 groceryLists: [action.payload, ...state.groceryLists]  // Creating a new array and adding the new grocery item to it
             }
+            case 'WEATHER_ERROR':
+            return {
+                ...state,  // Creating a new state
+                weatherError: action.payload
+            }
+
         default:
             return state;
     }

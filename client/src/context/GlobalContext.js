@@ -6,6 +6,7 @@ import axios from 'axios'
 const initialState = {
     groceryLists: [],
     error: null,
+    weatherError: '',
     loading: true
 }
 
@@ -84,6 +85,24 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    //  Fecthhing current weather
+    async function currentWeather(city) {
+        try {
+            const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+            localStorage.setItem('weatherData', JSON.stringify(res.data));
+            localStorage.setItem('weatherCounter', 0);
+            // localStorage.removeItem('weatherData');
+            // localStorage.removeItem('weatherCounter');
+
+        } catch (err) {
+            console.log(err)
+            dispatch({
+                type: "WEATHER_ERROR",
+                payload: err.response.data.error
+            })
+        }
+    }
+
     // ClobalContext.Provider will wrap all the components(children)
     return (<GlobalContext.Provider value={{
         groceryLists: state.groceryLists,
@@ -91,7 +110,9 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         getGroceryLists,
         addTransaction,
-        deleteTransaction
+        deleteTransaction,
+        currentWeather,
+        weatherError: state.weatherError
     }}>
         {children}
     </GlobalContext.Provider>);

@@ -31,6 +31,16 @@ function Login() {
                         <div className="mb-8">
                             <label className="block text-gray-600 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
+                                    City
+                            </label>
+                            {/* <div className="mt-1 relative rounded-md shadow-sm"> */}
+                                <input name="city" id="city" type="text" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                            {/* </div> */}
+                        </div>
+                        
+                        <div className="mb-8">
+                            <label className="block text-gray-600 text-md font-bold mb-2">
+                                <span className="text-red-500">&nbsp;*</span>
                                 Email
                             </label>
                                 <input name="email" id="email" type="email" placeholder="example@gmail.com" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />

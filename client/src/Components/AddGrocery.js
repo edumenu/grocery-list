@@ -35,19 +35,19 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus }) {
         <div className={`add-grocery overflow-y-auto max-h-screen ${addGroceryButton ? "block" : "hidden"}`} >
             <form onSubmit={onSubmit}>
                 <div className="mb-8">
-                    <label htmlFor="item" className="block text-gray-600 text-md font-bold mb-2"> Grocery item </label>
-                    <input name="item" id="item" value={item} onChange={(e) => setItem(e.target.value)} type="text" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
+                    <label htmlFor="item" className="block text-gray-300 text-md font-bold mb-2"> Grocery item </label>
+                    <input name="item" id="item" value={item} onChange={(e) => setItem(e.target.value)} type="text" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
                 </div>
 
                 <div className="mb-8">
-                    <label htmlFor="amount" className="block text-gray-600 text-md font-bold mb-2"> Amount </label>
-                    <input name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} id="amount" type="number" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-700 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
+                    <label htmlFor="amount" className="block text-gray-300 text-md font-bold mb-2"> Amount </label>
+                    <input name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} id="amount" type="number" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
                 </div>
 
                 <span className="text-xl font-bold text-red-600">{ error ? error : ""}</span>
 
                 <div className="mb-4 text-center">
-                    <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-green-500 font-bold py-4 px-8 mx-6" type="submit"> Add transaction </button>
+                    <button className="transition duration-500 card_element hover:card_element2 focus:outline-none focus:shadow-outline text-gray-300 font-bold py-4 px-8 mx-6" type="submit"> Add transaction </button>
                 </div>
             </form>
         </div>
