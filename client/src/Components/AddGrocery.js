@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 function AddGrocery({ addGroceryButton, changeHistoryListStatus }) {
     const [item, setItem] = useState('')
     const [amount, setAmount] = useState(0)
-    const { addTransaction, error } = useContext(GlobalContext);
+    const { addTransaction, error, groceryLists } = useContext(GlobalContext);
 
     const onSubmit = e => {
         e.preventDefault(); // Prevents a link from opening a URL
@@ -18,8 +18,6 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus }) {
 
         // Calling the add transaction    
         addTransaction(newGroceryItem);
-
-        // console.log(error)
 
         // Display history list
         changeHistoryListStatus();
@@ -36,7 +34,7 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus }) {
             <form onSubmit={onSubmit}>
                 <div className="mb-8">
                     <label htmlFor="item" className="block text-gray-300 text-md font-bold mb-2"> Grocery item </label>
-                    <input name="item" id="item" value={item} onChange={(e) => setItem(e.target.value)} type="text" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
+                    <input name="item" id="item" value={item} onChange={(e) => setItem(e.target.value)} type="text" placeholder={ groceryLists.length === 0 ? "Total" : "" } className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required/>
                 </div>
 
                 <div className="mb-8">

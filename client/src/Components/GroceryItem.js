@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function GroceryItem({ item, toggleModalOpen }) {
@@ -6,8 +6,8 @@ function GroceryItem({ item, toggleModalOpen }) {
     const sign = item.amount < 0 ? `-` : `+`;
 
     return (
-        <div className={`flex items-stretch card_element3 p-4 mb-1 border-r-8 ${signClass}`}>
-            <a onClick={toggleModalOpen.bind(this, item)} href="#"><i className="flex-1 text-lg mt-2 fa fa-trash-o text-gray-300 hover:text-red-600" aria-hidden="true"></i></a>
+        <div className={`flex items-stretch card_element2 p-4 mb-2 border-r-8 ${signClass}`}>
+            <button onClick={toggleModalOpen.bind(this, item)} ><i className="flex-1 text-lg mt-2 fa fa-trash-o text-gray-300 hover:text-red-600" aria-hidden="true"></i></button>
             <div className="flex-1 ml-4 font-bold text-2xl text-gray-300">{item.item}</div>
             <div className="flex-2 text-xl font-bold text-gray-300">{sign}${Math.abs(item.amount.toFixed(2))}</div>
         </div>

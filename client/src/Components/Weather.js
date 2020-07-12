@@ -9,19 +9,19 @@ import Rain from './Weather/Rain'
 import Thunderstorm from './Weather/Thunderstorm'
 
 function Weather() {
-    const { currentWeather, weatherError } = useContext(GlobalContext);
+    const { currentWeather } = useContext(GlobalContext);
     const [temp, setTemp] = useState('')
     const [cityName, setCityName] = useState('')
     const [weatherType, setWeatherType] = useState('')
 
     useEffect(() => {
         // Checking for the existence of weatherCounter or weatherCounter < 50
-        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 1) {
+        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 25) {
             currentWeather();
         } else {
             getCurrentWeather();
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // This function settings the weather info from local storage

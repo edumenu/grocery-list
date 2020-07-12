@@ -20,7 +20,7 @@ export class Dashboard extends Component {
     }
 
     componentDidMount() {
-        console.log("mount")
+        // console.log("mount")
     }
 
     // This function displays history list section
@@ -88,7 +88,7 @@ export class Dashboard extends Component {
                             {/* History, Add Grocery */}
                             <div className="lg:w-1/2 w-full pr-8 px-4 py-6">
                                 <div className="flex mb-4">
-                                    <button onClick={this.changeHistoryListStatus} className={`flex-grow text-gray-300 focus:outline-none p-4 text-lg ${this.state.historyButton ? "card_element2" : "card_element hover:card_element2"}`}><i className="text-lg fa fa-list mr-2" aria-hidden="true"></i>History</button>
+                                    <button onClick={this.changeHistoryListStatus} className={`flex-grow text-gray-300 focus:outline-none p-4 text-lg ${this.state.historyButton ? "card_element2" : "card_element hover:card_element2"}`}><i className="text-lg fa fa-list mr-2" aria-hidden="true"></i>Grocery List</button>
                                     <button onClick={this.changeGroceryAddStatus} className={`flex-grow text-gray-300 focus:outline-none text-lg p-4 ${this.state.addGroceryButton ? "card_element2" : "card_element hover:card_element2"}`} ><i className="text-lg fa fa-cart-plus mr-2" aria-hidden="true"></i>Add Grocery</button>
                                 </div>
                                 {/* Grocery list History */}

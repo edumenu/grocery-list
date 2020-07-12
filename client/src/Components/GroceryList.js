@@ -10,6 +10,7 @@ function GroceryList({ historyButton, toggleModalOpen }) {
     useEffect(() => {
         // Calling the grocery list function
         getGroceryLists();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
