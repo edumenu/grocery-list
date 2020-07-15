@@ -23,7 +23,7 @@ export const GlobalProvider = ({ children }) => {
     //Actions
     async function getGroceryLists() {
         try {
-            const res = await axios.get('/api/v1/groceries');
+            const res = await axios.get('http://localhost:5000/api/v1/groceries');
             // Getting a list of groceries
             dispatch({
                 type: "GET_GROCERIES",

@@ -8,13 +8,13 @@ WORKDIR '/usr/src/app'
 COPY ./package*.json ./
 COPY ./yarn.lock ./
 
+# Install npm into the container
 RUN yarn install --silent
-RUN yarn add react-scripts@3.4.1 --silent
-RUN yarn add tailwindcss --silent
+RUN yarn add cors --silent
 
 # Add a copy to the root of the app
 COPY . . 
 
 # Start the app
-EXPOSE 3000
-CMD ["yarn", "start"]
+EXPOSE 5000
+CMD ["yarn", "run", "dev"]

@@ -3,6 +3,12 @@ const dotenv = require('dotenv');   // Used to create global variables for ports
 const colors = require('colors');   // Colors for console
 const morgan = require('morgan');   // HTTP request
 const connectDB = require('./config/DB');   // DB connection
+var cors = require('cors');
+
+const app = express();  // Initializing express app
+
+// Then use it before your routes are set up:
+app.use(cors());
 
 dotenv.config({ path: './config/config.env' });   // Using dotenv to access the config file
 
@@ -10,9 +16,7 @@ connectDB();   // Connecting to the mongoDB database
 
 const groceries = require('./routes/groceries');   // Initializing the routing file
 
-const app = express();  // Initializing express app
-
-app.use(express.json());  // Express body parser middleware for parsing incoming requests
+// app.use(express.json());  // Express body parser middleware for parsing incoming requests
 
 if(process.env.NODE_ENV === "development"){
     app.use(morgan('dev'));
@@ -20,6 +24,6 @@ if(process.env.NODE_ENV === "development"){
 
 app.use('/api/v1/groceries', groceries)   // Mounting the router to this endpoint  
 
-const PORT = process.env.PORT || 5000  //Accessing the global variable to get port
+const PORT = 5000  //Accessing the global variable to get port
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
