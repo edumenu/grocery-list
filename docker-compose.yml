@@ -10,8 +10,8 @@ services:
             - "3000:3000"
         links:
             - api
-        volumes: 
-            - './usr/src/app'
+        environment:
+            - CHOKIDAR_USEPOLLING=true
     api:   
         build:
             context: .

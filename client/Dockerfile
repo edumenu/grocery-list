@@ -2,7 +2,7 @@
 FROM node:10
 
 # Setting the working directory
-WORKDIR '/usr/src/app'
+WORKDIR '/app'
 
 # Installing react app dependencies
 COPY ./package*.json ./
