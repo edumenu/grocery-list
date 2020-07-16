@@ -1,5 +1,10 @@
 # Requires the user to be with elevated permission
 sudo: required
+
+language: node_js
+
+services:
+    - docker
     
 env:
     - DOCKER_COMPOSE_VERSION: 1.23.2
