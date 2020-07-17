@@ -14,7 +14,7 @@ function GroceryList({ historyButton, toggleModalOpen }) {
     }, [])
 
     return (
-        <div className={`history-list overflow-y-auto pb-40 max-h-screen ${historyButton ? "block" : "hidden"}`} >
+        <div className={`history-list overflow-y-auto mb-4 max-h-screen ${historyButton ? "block" : "hidden"}`} >
             {(groceryLists).length > 0 ? groceryLists.map((item, index) => (
                 <GroceryItem key={index} item={item} toggleModalOpen={toggleModalOpen} />
             )) : <h2 className="text-3qxl font-bold text-center text-gray-300 mt-12">There are no items in your list</h2>}

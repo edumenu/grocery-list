@@ -3,12 +3,13 @@ const dotenv = require('dotenv');   // Used to create global variables for ports
 const colors = require('colors');   // Colors for console
 const morgan = require('morgan');   // HTTP request
 const connectDB = require('./config/DB');   // DB connection
-var cors = require('cors');
+// var cors = require('cors');
 
 const app = express();  // Initializing express app
 
 // Then use it before your routes are set up:
-app.use(cors());
+// app.use(cors());
+app.use(express.json());
 
 dotenv.config({ path: './config/config.env' });   // Using dotenv to access the config file
 
