@@ -7,7 +7,12 @@ export default (state, action) => {
             return {
                 ...state,   // Creating a new state
                 loading: false,
-                groceryLists: action.payload
+                groceryLists: action.payload,
+            }
+        case 'GET_GROCERIES_COUNT':
+            return {
+                ...state,   // Creating a new state
+                groceryCount: action.payload,
             }
         case 'GROCERY_ERROR':
             return {

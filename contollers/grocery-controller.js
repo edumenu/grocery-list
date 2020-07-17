@@ -7,7 +7,8 @@ const Grocery = require('../models/Grocery')
 exports.getGroceries = async (req, res, next) => {
     try {
         // Using the find method to fetch all grocery lists
-        const grocery = await Grocery.find();
+        var query = { createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\ .+/, '') };
+        const grocery = await Grocery.find(query);
 
         // Return a response status of 200 (ok status) and the data should be sent to the client 
         return res.status(200).json({

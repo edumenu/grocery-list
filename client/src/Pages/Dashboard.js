@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { GlobalContext } from '../context/GlobalContext';
 
 // import Header from '../Components/header'
 import Income from '../Components/Income'
@@ -12,16 +13,29 @@ import CurrentDate from '../Components/CurrentDate'
 import Modal from '../Components/Modal'
 
 export class Dashboard extends Component {
+    static contextType = GlobalContext
 
     state = {
         historyButton: true,    // Bool for displaying history list section
         addGroceryButton: false,    // Bool for displaying Add grocery list section
         modalOpen: false,
+        groceryCount: 0,
         deleteItem: {}
     }
 
     componentDidMount() {
-        // console.log("mount")
+        // const { groceryCount } = useContext(GlobalContext);
+        // console.log('')
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // passing in both prevProps and prevState to check previous states
+        // Adding a condition to check for previous state in order to prevent an infinite loop
+        if (this.context.groceryCount !== prevState.groceryCount) {
+            this.setState({
+                groceryCount: this.context.groceryCount
+            });
+        }
     }
 
     // This function displays history list section
@@ -57,13 +71,10 @@ export class Dashboard extends Component {
     render() {
 
         // Setting the state values
-        const { historyButton, addGroceryButton, modalOpen, deleteItem } = this.state
+        const { historyButton, addGroceryButton, modalOpen, deleteItem, groceryCount } = this.state
 
         return (
-
             <div>
-                {/* Header */}
-                {/* <Header /> */}
                 {/* Modal */}
                 <Modal modalOpen={modalOpen} toggleModalOpen={this.toggleModalOpen} deleteItem={deleteItem} />
                 <section className="text-gray-700s mt-8">
@@ -92,8 +103,8 @@ export class Dashboard extends Component {
                             {/* History, Add Grocery */}
                             <div className="lg:w-1/2 w-full pr-8 px-4 py-6 mb-16">
                                 <div className="flex mb-4">
-                                    <button onClick={this.changeHistoryListStatus} className={`flex-grow text-gray-300 focus:outline-none p-4 text-lg ${this.state.historyButton ? "card_element2" : "card_element hover:card_element2 hover:text-gray-500"}`}><i className="text-lg fa fa-list mr-2" aria-hidden="true"></i>Grocery List</button>
-                                    <button onClick={this.changeGroceryAddStatus} className={`flex-grow text-gray-300 focus:outline-none text-lg p-4 ${this.state.addGroceryButton ? "card_element2" : "card_element hover:card_element2 hover:text-gray-500"}`} ><i className="text-lg fa fa-cart-plus mr-2" aria-hidden="true"></i>Add Grocery</button>
+                                    <button onClick={this.changeHistoryListStatus} className={`flex-grow text-gray-300 focus:outline-none p-4 text-xl ${this.state.historyButton ? "card_element2" : "card_element hover:card_element2 hover:text-gray-500"}`}><i className="text-xl fa fa-list mr-2" aria-hidden="true"></i>Grocery List  <span className="text-2xl">({groceryCount})</span></button>
+                                    <button onClick={this.changeGroceryAddStatus} className={`flex-grow text-gray-300 focus:outline-none text-xl p-4 ${this.state.addGroceryButton ? "card_element2" : "card_element hover:card_element2 hover:text-gray-500"}`} ><i className="text-xl fa fa-cart-plus mr-2" aria-hidden="true"></i>Add Grocery</button>
                                 </div>
                                 {/* Grocery list History */}
                                 <GroceryList historyButton={historyButton} toggleModalOpen={this.toggleModalOpen} />

@@ -5,6 +5,7 @@ import axios from 'axios'
 //Object to store any initial global state
 const initialState = {
     groceryLists: [],
+    groceryCount: 0,
     error: null,
     weatherError: '',
     loading: true
@@ -28,6 +29,10 @@ export const GlobalProvider = ({ children }) => {
             dispatch({
                 type: "GET_GROCERIES",
                 payload: res.data.data
+            })
+            dispatch({
+                type: "GET_GROCERIES_COUNT",
+                payload: res.data.count
             })
         } catch (err) {
             // Setting the error message
@@ -108,6 +113,7 @@ export const GlobalProvider = ({ children }) => {
         groceryLists: state.groceryLists,
         error: state.error,
         loading: state.loading,
+        groceryCount: state.groceryCount,
         getGroceryLists,
         addTransaction,
         deleteTransaction,
