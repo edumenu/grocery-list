@@ -13,8 +13,7 @@ const GroceryShema = new mongoose.Schema({
     }
     ,
     createdAt: {
-        type: Date,
-        default: new Date().toISOString().replace(/T/, ' ').replace(/\ .+/, '')
+        type: Date
     }
 });
 

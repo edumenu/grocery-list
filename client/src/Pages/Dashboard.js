@@ -20,20 +20,22 @@ export class Dashboard extends Component {
         addGroceryButton: false,    // Bool for displaying Add grocery list section
         modalOpen: false,
         groceryCount: 0,
+        selectedDate: this.context.selectedDate,
         deleteItem: {}
     }
 
     componentDidMount() {
         // const { groceryCount } = useContext(GlobalContext);
-        // console.log('')
+        // console.log(this.context)
     }
 
     componentDidUpdate(prevProps, prevState) {
         // passing in both prevProps and prevState to check previous states
         // Adding a condition to check for previous state in order to prevent an infinite loop
-        if (this.context.groceryCount !== prevState.groceryCount) {
+        if (this.context.groceryCount !== prevState.groceryCount || this.context.selectedDate !== prevState.selectedDate) {
             this.setState({
-                groceryCount: this.context.groceryCount
+                groceryCount: this.context.groceryCount,
+                selectedDate: this.context.selectedDate,
             });
         }
     }
@@ -71,7 +73,7 @@ export class Dashboard extends Component {
     render() {
 
         // Setting the state values
-        const { historyButton, addGroceryButton, modalOpen, deleteItem, groceryCount } = this.state
+        const { historyButton, addGroceryButton, modalOpen, deleteItem, groceryCount, selectedDate } = this.state
 
         return (
             <div>
@@ -80,6 +82,8 @@ export class Dashboard extends Component {
                 <section className="text-gray-700s mt-8">
                     <div className="container card_element background_custom px-2 h-full sm:mb-0 md:mb-2 py-8 mx-auto bg-gray-100 flex overflow-hidden">
                         <div className="w-full mx-auto flex flex-wrap">
+                            {/* <h1>July</h1> */}
+
                             {/* Calendar */}
                             <Calendar />
 
@@ -87,7 +91,7 @@ export class Dashboard extends Component {
                             <div className="lg:w-1/2 w-full lg:pr-10 md:pr-4 p-4 lg:mb-0">
                                 <Weather />
                                 {/* Display current date */}
-                                <CurrentDate />
+                                <CurrentDate selectedDate={selectedDate} />
                                 <div className="container">
                                     <div className="flex flex-wrap mt-12 text-center">
                                         {/* Income component */}
@@ -110,7 +114,7 @@ export class Dashboard extends Component {
                                 <GroceryList historyButton={historyButton} toggleModalOpen={this.toggleModalOpen} />
 
                                 {/* Add grocery item */}
-                                <AddGrocery addGroceryButton={addGroceryButton} changeHistoryListStatus={this.changeHistoryListStatus} />
+                                <AddGrocery selectedDate={selectedDate} addGroceryButton={addGroceryButton} changeHistoryListStatus={this.changeHistoryListStatus} />
                             </div>
                         </div>
                     </div>

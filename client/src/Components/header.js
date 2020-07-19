@@ -2,15 +2,10 @@ import React from 'react'
 import logo from '../assets/images/groceryImage.png';
 
 function Header() {
-
-
     return (
         <nav className="flex items-center justify-between flex-wrap p-6">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
-                <div className="card_element4">
-                    <a href="/"><img className="mx-auto my-auto w-12" src={logo} alt="logo" /></a>
-                </div>
-                {/* <a href="/" className="font-bold text-white text-xl tracking-tight hover:text-yellow-400">Grocery</a> */}
+                <a className="" href="/"><img className="mx-auto card_element4 my-auto w-12" src={logo} alt="logo" /></a>
             </div>
             <div className="block lg:hidden md:hidden">
                 <button className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-white hover:border-white">

@@ -6,8 +6,8 @@ const Grocery = require('../models/Grocery')
 // @access Public
 exports.getGroceries = async (req, res, next) => {
     try {
-        // Using the find method to fetch all grocery lists
-        var query = { createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\ .+/, '') };
+        // Setting a query to find grocery item by date
+        var query = { createdAt: req.query.searchDate.replace(/T/, ' ').substr(0, 10)};
         const grocery = await Grocery.find(query);
 
         // Return a response status of 200 (ok status) and the data should be sent to the client 
@@ -32,10 +32,11 @@ exports.getGroceries = async (req, res, next) => {
 exports.addGroceries = async (req, res, next) => {
 
     try {
-        if(!req.amount) req.amount == 0
-        // Obtaining only text and amount from the body of the req
-        const { item, amount } = req.body;
-        // Saving it into a variable
+        // Setting a defaut amount value
+        if (!req.amount) req.amount == 0
+        // Obtaining text, amount and createdAt from the body of the req
+        const { item, amount, createdAt } = req.body;
+        // Saving it into a variable    
         const grocery = await Grocery.create(req.body);
         // Sending a response of 201(created status)
         return res.status(201).json({
@@ -61,17 +62,16 @@ exports.addGroceries = async (req, res, next) => {
             });
         }
     }
-
 }
 
 // @desc Delete a grocery list
 // @route DELETE /api/v1/groceries
 // @access Public
 exports.deleteGroceries = async (req, res, next) => {
-   try{
+    try {
         const grocery = await Grocery.findById(req.params.id);
         // If the id of the grocery list is not found, send a 404 (Not found) status
-        if(!grocery){
+        if (!grocery) {
             return res.status(404).json({
                 success: false,
                 error: 'Grocery item not found'
@@ -85,12 +85,12 @@ exports.deleteGroceries = async (req, res, next) => {
             data: "Grocery item was deleted successfully!"
         });
 
-   } catch (err) {
-       // Send an error message with status of 500 when something goes wrong
-       return res.status(500).json({
-        success: true,
-        data: "The server has encountered a situation it doesn't know how to handle"
-    });
+    } catch (err) {
+        // Send an error message with status of 500 when something goes wrong
+        return res.status(500).json({
+            success: true,
+            data: "The server has encountered a situation it doesn't know how to handle"
+        });
 
-   }
+    }
 }

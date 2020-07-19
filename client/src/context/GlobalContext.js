@@ -6,6 +6,7 @@ import axios from 'axios'
 const initialState = {
     groceryLists: [],
     groceryCount: 0,
+    selectedDate: new Date(),
     error: null,
     weatherError: '',
     loading: true
@@ -21,10 +22,10 @@ export const GlobalProvider = ({ children }) => {
     // and returns the current state paired with a dispatch method
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    //Actions
-    async function getGroceryLists() {
+    // Function to get grocery list items
+    async function getGroceryLists(searchDate) {
         try {
-            const res = await axios.get('/api/v1/groceries');
+            const res = await axios.get(`/api/v1/groceries?searchDate=${searchDate}`);
             // Getting a list of groceries
             dispatch({
                 type: "GET_GROCERIES",
@@ -114,6 +115,7 @@ export const GlobalProvider = ({ children }) => {
         error: state.error,
         loading: state.loading,
         groceryCount: state.groceryCount,
+        selectedDate: state.selectedDate,
         getGroceryLists,
         addTransaction,
         deleteTransaction,

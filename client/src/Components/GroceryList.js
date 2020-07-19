@@ -5,12 +5,11 @@ import GroceryItem from './GroceryItem';
 import PropTypes from 'prop-types'
 
 function GroceryList({ historyButton, toggleModalOpen }) {
-    const { groceryLists, getGroceryLists } = useContext(GlobalContext);
+    const { groceryLists, getGroceryLists, selectedDate } = useContext(GlobalContext);
 
     useEffect(() => {
-        console.log(groceryLists)
         // Calling the grocery list function
-        getGroceryLists();
+        getGroceryLists(selectedDate.toISOString());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
