@@ -21,7 +21,8 @@ export class App extends Component {
                     <Route exact path="/" component={Dashboard} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/about" component={About} />
-                    {/* <Route path="/login" component={Login} /> */}
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={Signup} />
                     {/* <Signup /> */}
                     {/* <About /> */}
                 </Router>

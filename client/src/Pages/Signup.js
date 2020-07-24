@@ -4,14 +4,14 @@ import gmail from '../assets/images/gmail.png';
 
 function Login() {
     return (
-        <div className="flex items-center my-8">
-            <div className="rounded mx-auto px-12 pt-8 pb-8 card_element">
+        <div className="flex items-center">
+            <div className="rounded mx-auto px-48 pt-8 pb-8 card_element background_custom">
                 <img className="mx-auto my-auto w-24" src={logo} alt="logo" />
-                <h1 className="text-4xl text-gray-600 font-bold mb-8">Weekly grocery planner</h1>
-                <h3 className="text-center text-xl font-bold mb-8 text-gray-600">Sign up to create an account </h3>
+                <h1 className="text-4xl text-center text-gray-300 font-bold mb-8">Weekly grocery planner</h1>
+                <h3 className="text-center text-xl font-bold mb-8 text-gray-300">Sign up to create an account </h3>
                     <form method="POST" action="#login">
                         <div className="mb-8">
-                            <label className="block text-gray-600 text-md font-bold mb-2">
+                            <label className="block text-gray-300 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
                                 First name
                             </label>
@@ -19,7 +19,7 @@ function Login() {
                         </div>
 
                         <div className="mb-8">
-                            <label className="block text-gray-600 text-md font-bold mb-2">
+                            <label className="block text-gray-300 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
                                 Last name
                             </label>
@@ -29,7 +29,7 @@ function Login() {
                         </div>
                         
                         <div className="mb-8">
-                            <label className="block text-gray-600 text-md font-bold mb-2">
+                            <label className="block text-gray-300 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
                                     City
                             </label>
@@ -39,7 +39,7 @@ function Login() {
                         </div>
                         
                         <div className="mb-8">
-                            <label className="block text-gray-600 text-md font-bold mb-2">
+                            <label className="block text-gray-300 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
                                 Email
                             </label>
@@ -47,7 +47,7 @@ function Login() {
                         </div>
 
                         <div className="mb-8">
-                            <label className="block text-gray-600 text-md font-bold mb-2">
+                            <label className="block text-gray-300 text-md font-bold mb-2">
                                 <span className="text-red-500">&nbsp;*</span>
                                 Password
                             </label>
@@ -59,7 +59,7 @@ function Login() {
                         <div className="mb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <a className="font-bold text-sm text-gray-600 hover:text-orange-800" href="#password-request">
+                                    <a className="font-bold text-sm text-gray-300 hover:text-orange-800" href="#password-request">
                                         forgot password
                                     </a>
                                 </div>
@@ -74,7 +74,7 @@ function Login() {
                                 <img className="w-6 mr-2 float-left" src={gmail} alt="gmail" />
                                 Sign up with gmail
                             </button>
-                            <h2 className="mt-4 text-gray-700">Do you already have an account? <span className="text-green-500">Login here</span></h2>
+                            <h2 className="mt-4 text-gray-400">Do you already have an account? <a href="/login" className="text-green-500">Login here</a></h2>
                         </div>
                     </form>
             </div>

@@ -26,7 +26,7 @@ export class Dashboard extends Component {
 
     componentDidMount() {
         // const { groceryCount } = useContext(GlobalContext);
-        // console.log(this.context)
+        // this.context.clearCookie()
     }
 
     componentDidUpdate(prevProps, prevState) {

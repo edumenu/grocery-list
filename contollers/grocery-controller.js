@@ -1,14 +1,86 @@
-const Grocery = require('../models/Grocery')
+const Grocery = require('../models/Grocery');
+const User = require('../models/userModel');
+const bcrypt = require('bcryptjs');
 
+// @desc Add a user
+// @route POST /api/v1/groceries
+// @access Public
+exports.addUser = async (req, res, next) => {
+
+    try {
+        // Obtaining email, password and displayName from the body of the req
+        let { email, password, displayName } = req.body;
+
+        // Check to see if any of these fields are empty
+        // Return 400 status for not providing all the fields
+        if(!email || !password) return res.status(400).json({message: "Please enter all the fields."})
+
+        // Password length
+        if(password.length < 5) return res.status(400).json({message: "Password is less than 5 characters long"})
+
+        // Check for an existing user
+        const existingUser = await User.findOne({email: email})
+        if(existingUser) return res.status(400).json({message: "Account with this email already exits. Please create a new email"})
+
+        // Set default display name if none is set
+        if(!displayName) displayName = email;
+
+        // Creating a salt for the password
+        const salt = await bcrypt.genSalt();
+        const passwordHash = await bcrypt.hash(password, salt);
+
+        // Creating a new User after validation checks   
+        const newUser = new User({
+            email,
+            password: passwordHash,
+            displayName
+        });
+
+        // Save User in the database
+        const savedUser = await newUser.save();
+
+        // Sending a response of 201(created status)
+        return res.status(201).json({
+            success: true,
+            data: savedUser
+        });
+
+    } catch (err) {
+        console.log(err)
+        // We are checking for error with a name of Validation to stores all it's messages
+        if (err.name == "ValidationError") {
+            const messages = Object.values(err.errors).map(val => val.message)  // Adding all the error messages into an array
+            // Sending a response of 400(client error)
+            // We are sending back error messages so it can be used in the front end
+            return res.status(400).json({
+                success: false,
+                error: messages
+            });
+
+        } else {
+            return res.status(500).json({
+                success: false,
+                error: "The server has encountered a situation it doesn't know how to handle"
+            });
+        }
+    }
+
+}
 
 // @desc Get all grocery lists
 // @route GET /api/v1/groceries
 // @access Public
 exports.getGroceries = async (req, res, next) => {
     try {
-        // Setting a query to find grocery item by date
-        var query = { createdAt: req.query.searchDate.replace(/T/, ' ').substr(0, 10)};
-        const grocery = await Grocery.find(query);
+        var grocery = ''
+        if (req.query.createdAt) {
+            // Setting a query to find grocery item by date
+            var query = { createdAt: req.query.createdAt.replace(/T/, ' ').substr(0, 10) };
+            grocery = await Grocery.find(query);
+        } else {
+            // Finding all grocery items
+            grocery = await Grocery.find();
+        }
 
         // Return a response status of 200 (ok status) and the data should be sent to the client 
         return res.status(200).json({
@@ -62,6 +134,7 @@ exports.addGroceries = async (req, res, next) => {
             });
         }
     }
+
 }
 
 // @desc Delete a grocery list

@@ -23,9 +23,9 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Function to get grocery list items
-    async function getGroceryLists(searchDate) {
+    async function getGroceryLists(createdAt) {
         try {
-            const res = await axios.get(`/api/v1/groceries?searchDate=${searchDate}`);
+            const res = await axios.get(`/api/v1/groceries?createdAt=${createdAt}`);
             // Getting a list of groceries
             dispatch({
                 type: "GET_GROCERIES",
