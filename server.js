@@ -14,14 +14,16 @@ dotenv.config({ path: './config/config.env' });   // Using dotenv to access the 
 
 connectDB();   // Connecting to the mongoDB database
 
-const groceries = require('./routes/groceries');   // Initializing the routing file
+const groceries = require('./routes/groceries');   // Initializing the grocery routing file
+const user = require('./routes/user');   // Initializing the grocery routing file
 
 // Express body parser middleware for parsing incoming requests
 if (process.env.NODE_ENV === "development") {
   app.use(morgan('dev'));
 }
 
-app.use('/api/v1/groceries', groceries)   // Mounting the router to this endpoint in the middleware
+app.use('/api/v1/groceries', groceries)   // Mounting the grocery router to this endpoint in the middleware
+app.use('/api/v1', user)   // Mounting the user router to this endpoint in the middleware
 
 const PORT = 5000  //Accessing the global variable to get port
 
