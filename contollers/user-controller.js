@@ -13,17 +13,17 @@ exports.addUser = async (req, res, next) => {
 
         // Check to see if any of these fields are empty
         // Return 400 status for not providing all the fields
-        if(!email || !password) return res.status(400).json({message: "Please enter all the fields."})
+        if (!email || !password) return res.status(400).json({ message: "Please enter all the fields." })
 
         // Password length
-        if(password.length < 5) return res.status(400).json({message: "Password is less than 5 characters long"})
+        if (password.length < 5) return res.status(400).json({ message: "Password is less than 5 characters long" })
 
         // Check for an existing user
-        const existingUser = await User.findOne({email: email})
-        if(existingUser) return res.status(400).json({message: "Account with this email already exits. Please create a new email"})
+        const existingUser = await User.findOne({ email: email })
+        if (existingUser) return res.status(400).json({ message: "Account with this email already exits. Please create a new email" })
 
         // Set default display name if none is set
-        if(!displayName) displayName = email;
+        if (!displayName) displayName = email;
 
         // Creating a salt for the password
         const salt = await bcrypt.genSalt();
@@ -64,11 +64,10 @@ exports.addUser = async (req, res, next) => {
             });
         }
     }
-
 }
 
 
-// @desc Add a user
+// @desc Login a user
 // @route POST /api/v1/groceries/registration
 // @access Public
 exports.loginUser = async (req, res, next) => {
@@ -79,18 +78,18 @@ exports.loginUser = async (req, res, next) => {
 
         // Check to see if any of these fields are empty
         // Return 400 status for not providing all the fields
-        if(!email || !password) return res.status(400).json({message: "Please enter all the fields."});
+        if (!email || !password) return res.status(400).json({ message: "Please enter all the fields." });
 
         // Checking for the email existence and then returning an object
         const user_login = await User.findOne({ email: email });
 
         // Check if user exist
-        if(!user_login) return res.status(400).json({message: "This user does not exist."})
+        if (!user_login) return res.status(400).json({ message: "This user does not exist." })
 
         // If user exist, then we will compare the user's password with the one provided for usf
         const ismatch = await bcrypt.compare(password, user_login.password)
 
-        if(!ismatch) return res.status(400).json({message: "Your password is incorrect."})
+        if (!ismatch) return res.status(400).json({ message: "Your password is incorrect." })
 
         // New user object
         const loginUser = new User({
@@ -100,7 +99,7 @@ exports.loginUser = async (req, res, next) => {
         });
 
         // Signing the JWT with the User currently logged with their Id
-        const token = jwt.sign({id: user_login._id }, process.env.JWT_SECRET)
+        const token = jwt.sign({ id: user_login._id }, process.env.JWT_SECRET)
 
         // Sending a response of 201(created status)
         return res.status(201).json({
@@ -129,4 +128,62 @@ exports.loginUser = async (req, res, next) => {
         }
     }
 
+}
+
+// @desc Delete a user
+// @route POST /api/v1/groceries/registration
+// @access Public
+exports.deleteUser = async (req, res, next) => {
+    try {
+        // Deleting a user from the database with findByIdAndDelete
+        const delete_user = await User.findByIdAndDelete(req.user);
+
+        // Sending a response of 201(created status)
+        return res.status(200).json({
+            success: true,
+            data: delete_user
+        });
+
+    } catch (err) {
+        // Send an error message with status of 500 when something goes wrong
+        return res.status(500).json({
+            success: true,
+            data: "The server has encountered a situation it doesn't know how to handle"
+        });
+    }
+}
+
+// @desc Check valid token
+// @route Post /api/v1/user/validToken
+// @access Public
+exports.validToken = async (req, res, next) => {
+    try {
+        // Getting the x-auth-token value from the header from the front-end
+        const token = req.header("x-auth-token");
+        
+        // Check for empty token and return false
+        if (!token) return res.json(false);
+
+        // If the token exist, we verify it with the token secrete
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+    
+        // Check for empty token and return false
+        if (!verified) return res.json(false);
+
+        // Search for the user by the verified ID
+        const user = await User.findById(verified.id)
+
+        // Check for valid user,
+        if(!user) return res.json(false)
+
+        // If user exist
+        return res.json(true)
+
+    } catch (err) {
+        // Send an error message with status of 500 when something goes wrong
+        return res.status(500).json({
+            success: true,
+            data: "The server has encountered a situation it doesn't know how to handle"
+        });
+    }
 }

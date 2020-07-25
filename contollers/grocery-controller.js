@@ -97,6 +97,5 @@ exports.deleteGroceries = async (req, res, next) => {
             success: true,
             data: "The server has encountered a situation it doesn't know how to handle"
         });
-
     }
 }
