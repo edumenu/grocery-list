@@ -68,7 +68,7 @@ export const GlobalProvider = ({ children }) => {
     async function addTransaction(groceryItem) {
         const config = {
             // We need a content type for sending data
-            heasers: {
+            headers: {
                 'Content-Type': 'application/json'
             }
         }

@@ -1,9 +1,14 @@
 const express = require('express')
 const router = express.Router();   // Using express router method
 const auth = require('../middleware/auth');
-const { addUser, loginUser, deleteUser, validToken } = require('../contollers/user-controller');   // Initializing groceries controller
+const { addUser, loginUser, deleteUser, validToken, getUserData } = require('../contollers/user-controller');   // Initializing groceries controller
 
 // Setting router for registration
+router
+    .route('/')
+    .get(auth, getUserData)
+
+    // Setting router for registration
 router
     .route('/registration')
     .post(addUser)

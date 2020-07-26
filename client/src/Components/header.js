@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import logo from '../assets/images/groceryImage.png';
+import UserContext from '../context/UserContext'
 
 function Header() {
+    const user = useContext(UserContext)
+
+    useEffect(() => {
+        // console.log(user)
+    })
+
     return (
         <nav className="flex items-center justify-between flex-wrap p-6">
             <div className="flex items-center flex-shrink-0 text-white mr-6">

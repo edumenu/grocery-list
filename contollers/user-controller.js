@@ -187,3 +187,30 @@ exports.validToken = async (req, res, next) => {
         });
     }
 }
+
+
+// @desc Get user data
+// @route Get /api/v1/user/
+// @access Public
+exports.getUserData = async (req, res, next) => {
+    try {
+        // Getting the x-auth-token value from the header from the front-end
+        const user_data = await User.findById(req.user);
+        
+        // Check for empty token and return false
+        if (!user_data) return res.json(false);
+
+        // If user exist, return user data
+        return res.json({
+            success: true,
+            data: user_data
+        })
+
+    } catch (err) {
+        // Send an error message with status of 500 when something goes wrong
+        return res.status(500).json({
+            success: true,
+            data: "The server has encountered a situation it doesn't know how to handle"
+        });
+    }
+}
