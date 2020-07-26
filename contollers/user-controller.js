@@ -139,7 +139,7 @@ exports.deleteUser = async (req, res, next) => {
         const delete_user = await User.findByIdAndDelete(req.user);
 
         // Sending a response of 201(created status)
-        return res.status(200).json({
+        return res.status(204).json({
             success: true,
             data: delete_user
         });
@@ -177,7 +177,7 @@ exports.validToken = async (req, res, next) => {
         if(!user) return res.json(false)
 
         // If user exist
-        return res.json(true)
+        return res.status(201).json(true)
 
     } catch (err) {
         // Send an error message with status of 500 when something goes wrong
@@ -201,9 +201,10 @@ exports.getUserData = async (req, res, next) => {
         if (!user_data) return res.json(false);
 
         // If user exist, return user data
-        return res.json({
+        return res.status(200).json({
             success: true,
-            data: user_data
+            displayName: user_data.displayName,
+            id: user_data._id
         })
 
     } catch (err) {

@@ -6,7 +6,7 @@ function Header() {
     const user = useContext(UserContext)
 
     useEffect(() => {
-        // console.log(user)
+        console.log(user)
     })
 
     return (

@@ -3,8 +3,11 @@ const dotenv = require('dotenv');   // Used to create global variables for ports
 const colors = require('colors');   // Colors for console
 const morgan = require('morgan');   // HTTP request
 const connectDB = require('./config/DB');   // DB connection
-
+var cors = require('cors')  // Cross origin resources sharing
 const app = express();  // Initializing and setting up express app
+
+//
+app.use(cors())
 
 // Then use it before your routes are set up:
 // Setting up express JSON for the middleware
