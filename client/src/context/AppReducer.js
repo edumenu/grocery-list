@@ -23,6 +23,11 @@ export default (state, action) => {
                 ...state,
                 signup_error: action.payload
             }
+        case 'CLEAR_ADD_GROCERY_ERROR':
+            return {
+                ...state,
+                addGrocery_error: action.payload
+            }
         case 'CLEAR_LOGIN_ERROR':
             return {
                 ...state,
@@ -57,7 +62,7 @@ export default (state, action) => {
         case 'GROCERY_ERROR':
             return {
                 ...state,
-                error: action.payload
+                addGrocery_error: action.payload
             }
         case 'DELETE_GROCERIES':
             return {

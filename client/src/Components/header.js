@@ -1,13 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import logo from '../assets/images/groceryImage.png';
 import { GlobalContext } from '../context/GlobalContext';
 import { withRouter } from 'react-router-dom';
 
 
 function Header(props) {
-    const { logUserOut } = useContext(GlobalContext);
+    const { logUserOut, user_data, checkLoggedIn } = useContext(GlobalContext);
     const [buttonVis, setButtonVis] = useState(true);
     var isButtonVis = buttonVis ? 'block' : 'hidden';
+
+    useEffect(() => {
+        checkLoggedIn()
+    }, [user_data.token])
 
     function dropNav() {
         setButtonVis(!buttonVis)
@@ -22,6 +26,7 @@ function Header(props) {
         <nav className="flex items-center justify-between flex-wrap p-6">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
                 <a className="" href="/"><img className="mx-auto card_element4 my-auto w-12" src={logo} alt="logo" /></a>
+                <h1 className="text-xl font-bold ml-4">{user_data.displayName ? user_data.displayName : ""}</h1>
             </div>
             <div className="block lg:hidden md:hidden">
                 <button onClick={dropNav} className="flex items-center px-3 py-2 border rounded text-white border-gray hover:text-gray hover:border-white">

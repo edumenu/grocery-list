@@ -32,10 +32,14 @@ exports.getGroceries = async (req, res, next) => {
 // @access Public
 exports.addGroceries = async (req, res, next) => {
     try {
-        checkGroceryLimit()
-        if (!req.amount) req.amount == 0
+        oldGroceryItems()
+        const grocery_list = await Grocery.find()
+        console.log(grocery_list.length)
+        if (grocery_list.length >= 30) return res.status(400).json({ message: "You cannot add any more grocery items"})
+
         const { item, amount, createdAt } = req.body;
         const grocery = await Grocery.create(req.body);
+
         return res.status(201).json({
             success: true,
             data: grocery
@@ -84,7 +88,7 @@ exports.deleteGroceries = async (req, res, next) => {
 }
 
 // Delete grocery items that are 7 days and older
-checkGroceryLimit = async () => {
+oldGroceryItems = async () => {
     current_date = new Date;
     current_date.setDate(current_date.getDate() - 8)
     grocery = await Grocery.find();

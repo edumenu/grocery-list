@@ -8,6 +8,7 @@ const initialState = {
     groceryCount: 0,
     selectedDate: new Date(),
     error: null,
+    addGrocery_error: null,
     login_error: null,
     signup_error: null,
     weatherError: '',
@@ -40,6 +41,10 @@ export const GlobalProvider = ({ children }) => {
                     }
                     const user_data = await axios.get(`http://localhost:5000/api/v1/user`, get_config)
                     user_data.data['token'] = token
+                    dispatch({
+                        type: "LOGIN_USER",
+                        payload: user_data.data
+                    })
                 }
             } catch (err) {
                 dispatch({
@@ -111,7 +116,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     // Delete item on the list
-    async function deleteTransaction(id) {
+    async function deleteGroceryItem(id) {
         try {
             await axios.delete(`http://localhost:5000/api/v1/groceries/${id}`);
             dispatch({
@@ -127,7 +132,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     // Add a new grocery item
-    async function addTransaction(groceryItem) {
+    async function addGroceryItem(groceryItem) {
         const config = {
             headers: { 'Content-Type': 'application/json' }
         }
@@ -140,11 +145,17 @@ export const GlobalProvider = ({ children }) => {
         } catch (err) {
             dispatch({
                 type: "GROCERY_ERROR",
-                payload: err.response.data.error
+                payload: err.response.data.message
             })
         }
     }
 
+    function ClearAddGroceryErr() {
+        dispatch({
+            type: "CLEAR_ADD_GROCERY_ERROR",
+            payload: null
+        })
+    }
     function ClearLoginError() {
         dispatch({
             type: "CLEAR_LOGIN_ERROR",
@@ -168,7 +179,6 @@ export const GlobalProvider = ({ children }) => {
             // localStorage.removeItem('weatherData');
             // localStorage.removeItem('weatherCounter');
         } catch (err) {
-            console.log(err)
             dispatch({
                 type: "WEATHER_ERROR",
                 payload: err.response.data.error
@@ -181,18 +191,20 @@ export const GlobalProvider = ({ children }) => {
         groceryLists: state.groceryLists,
         login_error: state.login_error,
         signup_error: state.signup_error,
+        addGrocery_error: state.addGrocery_error,
         loading: state.loading,
         groceryCount: state.groceryCount,
         selectedDate: state.selectedDate,
         checkLoggedIn,
         logUserOut,
         registerUser,
+        ClearAddGroceryErr,
         ClearLoginError,
         ClearSignupError,
         loginUser,
         getGroceryLists,
-        addTransaction,
-        deleteTransaction,
+        addGroceryItem,
+        deleteGroceryItem,
         currentWeather,
         weatherError: state.weatherError
     }}>

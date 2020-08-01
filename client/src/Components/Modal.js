@@ -3,10 +3,10 @@ import { GlobalContext } from '../context/GlobalContext';
 import PropTypes from 'prop-types';
 
 function Modal({ modalOpen, toggleModalOpen, deleteItem }) {
-    const { deleteTransaction } = useContext(GlobalContext);
+    const { deleteGroceryItem } = useContext(GlobalContext);
 
     function delete_transaction(deleteItem) {
-        deleteTransaction(deleteItem._id)
+        deleteGroceryItem(deleteItem._id)
         toggleModalOpen(deleteItem)
     }
 

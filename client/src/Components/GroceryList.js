@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import GroceryItem from './GroceryItem';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import ErrorMessage from '../Components/ErrorMessage';
 
 function GroceryList({ historyButton, toggleModalOpen }) {
-    const { groceryLists, getGroceryLists, selectedDate } = useContext(GlobalContext);
+    const { groceryLists, getGroceryLists, selectedDate, addGrocery_error, ClearAddGroceryErr } = useContext(GlobalContext);
 
     useEffect(() => {
         getGroceryLists(selectedDate.toISOString());
@@ -13,6 +14,7 @@ function GroceryList({ historyButton, toggleModalOpen }) {
 
     return (
         <div className={`history-list overflow-y-auto mb-4 max-h-screen ${historyButton ? "block" : "hidden"}`} >
+                <ErrorMessage error_message={addGrocery_error} ClearErrorMessage={ClearAddGroceryErr} />
             {(groceryLists).length > 0 ? groceryLists.map((item, index) => (
                 <GroceryItem key={index} item={item} toggleModalOpen={toggleModalOpen} />
             )) : <h2 className="text-3qxl font-bold text-center text-gray-300 mt-12">There are no items in your list</h2>}

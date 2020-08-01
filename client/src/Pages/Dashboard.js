@@ -25,7 +25,6 @@ export class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.context.checkLoggedIn()
         if (localStorage.getItem("auth-token") === 'undefined' || localStorage.getItem("auth-token") === "") {
             this.props.history.push("/login");
         }

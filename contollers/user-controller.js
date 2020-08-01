@@ -8,6 +8,11 @@ const jwt = require('jsonwebtoken');
 exports.addUser = async (req, res, next) => {
 
     try {
+
+        const userList = await User.find()
+
+        if (userList.length >= 2) return res.status(400).json({ message: "Sorry, you cannot create more users."})
+
         let { email, password, city, displayName } = req.body;
 
         if (!email || !password || !city) return res.status(400).json({ message: "Please enter all the fields." })
@@ -127,6 +132,7 @@ exports.deleteUser = async (req, res, next) => {
 // @access Public
 exports.validToken = async (req, res, next) => {
     try {
+
         const token = req.header("x-auth-token");
         
         if (!token) return res.json(false);
