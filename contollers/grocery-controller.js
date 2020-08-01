@@ -34,7 +34,7 @@ exports.addGroceries = async (req, res, next) => {
     try {
         oldGroceryItems()
         const grocery_list = await Grocery.find()
-        console.log(grocery_list.length)
+        
         if (grocery_list.length >= 30) return res.status(400).json({ message: "You cannot add any more grocery items"})
 
         const { item, amount, createdAt } = req.body;

@@ -2,7 +2,7 @@
 // and returns the current state paired with a dispatch method
 // The main goal of the reducer is to change the state and send it back to the components
 export default (state, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'GET_USER_DATA':
             return {
                 ...state,
@@ -74,7 +74,7 @@ export default (state, action) => {
                 ...state,
                 groceryLists: [action.payload, ...state.groceryLists]  // Creating a new array and adding the new grocery item to it
             }
-            case 'WEATHER_ERROR':
+        case 'WEATHER_ERROR':
             return {
                 ...state,
                 weatherError: action.payload
