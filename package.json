@@ -7,7 +7,10 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "cd client && yarn start",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "build": "cd client && yarn build",
+    "install-client": "cd client && yarn install",
+    "heroku-postbuild": "yarn run install-client && yarn run build"
   },
   "repository": "git+https://github.com/edumenu/grocery-list-react.git",
   "author": "Edem Dumenu",

@@ -27,6 +27,10 @@ if (process.env.NODE_ENV === "development") {
 app.use('/api/v1/groceries', groceries) 
 app.use('/api/v1/user', user)
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'));
+}
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
