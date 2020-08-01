@@ -1,31 +1,26 @@
 const express = require('express')
-const router = express.Router();   // Using express router method
+const router = express.Router();
 const auth = require('../middleware/auth');
-const { addUser, loginUser, deleteUser, validToken, getUserData } = require('../contollers/user-controller');   // Initializing groceries controller
+const { addUser, loginUser, deleteUser, validToken, getUserData } = require('../contollers/user-controller');
 
-// Setting router for registration
 router
     .route('/')
     .get(auth, getUserData)
 
-    // Setting router for registration
 router
     .route('/registration')
     .post(addUser)
 
-// Setting router for login
 router
     .route('/login')
     .post(loginUser)
 
-// Setting router for delete
 router
     .route('/delete')
     .delete(auth, deleteUser)
 
-// Setting router for valid token
 router
     .route('/tokenIsValid')
     .post(validToken)
 
-module.exports = router; // Exporting router
+module.exports = router;

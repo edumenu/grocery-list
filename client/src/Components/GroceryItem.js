@@ -14,7 +14,6 @@ function GroceryItem({ item, toggleModalOpen }) {
     )
 }
 
-// Proptype to determine the type of prop being used
 GroceryItem.propTypes = {
     item: PropTypes.object.isRequired,
     toggleModalOpen: PropTypes.func.isRequired,

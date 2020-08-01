@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// Schema for grocery list
+// Grocery list
 const GroceryShema = new mongoose.Schema({
     item: {
         type: String,

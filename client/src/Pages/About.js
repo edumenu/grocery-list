@@ -1,23 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../assets/images/groceryImage.png';
+import { withRouter } from 'react-router-dom';
 
-function Login() {
+
+function Login(props) {
+    useEffect(() => {
+        if (localStorage.getItem("auth-token") === 'undefined' || localStorage.getItem("auth-token") === '') {
+            props.history.push('/login')
+        }
+    })
+
     return (
-        <div className="flex items-center my-12">
-            <div className="rounded mx-auto px-12 pt-12 pb-8 card_element">
+        <div className="flex items-center my-2">
+            <div className="rounded mx-auto px-8 pt-4 pb-8 card_element background_custom">
                 <img className="mx-auto my-auto w-24" src={logo} alt="logo" />
                 <h1 className="w-full text-center text-3xl text-gray-300 font-bold mt-4 mb-8">About</h1>
-
                 <div className="container text-gray-300 text-xl max-w-lg">
-                is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
-                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to 
-                make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    This is a weekly tracker that I have been working on in the last month. My girlfriend and I always lost track of how much we spend
+                    while in the grocery store, so I decided to build this tracker to keep track.
+                </div>
+                <div className="container text-gray-300 text-xl max-w-lg">
+                    This application keeps of all our expenses on a weekly bases, I might change this to a
+                monthly expense tracker in the future but for now, it will be a weekly tracker. I built this application using <span className="font-extrabold text-2xl">React</span> as the front-end
+                and <span className="font-extrabold text-2xl">Tailwindcss</span> for the UI. For the backend,
+                I used <span className="font-extrabold text-2xl">NodeJs</span> and <span className="font-extrabold text-2xl">MongoDB</span> as
+                the database. This is the first phase of the app, I'll keep building on top of this.
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login
+export default withRouter(Login)

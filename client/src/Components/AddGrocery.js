@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 function AddGrocery({ addGroceryButton, changeHistoryListStatus, selectedDate }) {
     const { addTransaction, error, groceryLists } = useContext(GlobalContext);
@@ -9,20 +8,18 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus, selectedDate })
     const [amount, setAmount] = useState(0)
     const [createdAt, setcreatedAt] = useState('')
 
-    // This function handles onChange for grocery item field
     function handleGroceryChange(e) {
         setItem(e.target.value)
         setcreatedAt(selectedDate.toISOString().substr(0, 10))
     }
 
-    // This function checks for onChange in amount field
     function handleAmountChange(e) {
         setAmount(e.target.value)
         setcreatedAt(selectedDate.toISOString().substr(0, 10))
     }
 
     const onSubmit = e => {
-        e.preventDefault(); // Prevents a link from opening a URL
+        e.preventDefault();
 
         const newGroceryItem = {
             item,
@@ -30,13 +27,8 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus, selectedDate })
             createdAt
         }
 
-        // Calling the add transaction    
         addTransaction(newGroceryItem);
-
-        // Display history list
         changeHistoryListStatus();
-
-        // Setting values back to default
         setItem('')
         setAmount('')
     }
@@ -59,7 +51,6 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus, selectedDate })
                     <label htmlFor="date" className="block text-gray-300 text-md font-bold mb-2"> Date </label>
                     <input name="date" value={createdAt} onChange={(e) => setcreatedAt(e.target.value)} id="date" type="text" className="card_element2 block pr-10 w-3/4 py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" required />
                 </div>
-                {/* Display error message */}
                 <span className="text-xl font-bold text-red-600">{error ? error : ""}</span>
 
                 <div className="mb-4 text-center">
@@ -70,7 +61,6 @@ function AddGrocery({ addGroceryButton, changeHistoryListStatus, selectedDate })
     )
 }
 
-// Proptype to determine the type of prop being used
 AddGrocery.propTypes = {
     addGroceryButton: PropTypes.bool.isRequired,
     changeHistoryListStatus: PropTypes.func.isRequired,

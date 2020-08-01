@@ -1,12 +1,17 @@
 const mongoose = require('mongoose')
 
-// Schema for grocery list
+// UserModel
 const UserShema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
         trim: true,
         required: [true, 'Please enter an email address']
+    },
+    city: {
+        type: String,
+        trim: true,
+        required: [true, 'Please enter a city. It will be used to display the temperature at your location']
     },
     password: {
         type: String,

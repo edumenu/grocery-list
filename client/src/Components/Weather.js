@@ -15,7 +15,6 @@ function Weather() {
     const [weatherType, setWeatherType] = useState('')
 
     useEffect(() => {
-        // Checking for the existence of weatherCounter or weatherCounter < 50
         if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 25) {
             currentWeather();
         } else {
@@ -24,23 +23,17 @@ function Weather() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // This function settings the weather info from local storage
     function getCurrentWeather() {
-        // Setting local weather counter
         var weatherCounter = localStorage.getItem('weatherCounter')
-        // Setting values
         setTemp(JSON.parse(localStorage.getItem('weatherData')).main.temp)
         setCityName(JSON.parse(localStorage.getItem('weatherData')).name)
         setWeatherType(JSON.parse(localStorage.getItem('weatherData')).weather[0].main)
-        // Increment weather counter
         weatherCounter++
-        // Setting weather counter
         localStorage.setItem('weatherCounter', weatherCounter)
     }
 
-    function checkWeatherType(weather_type){
-        // Returning a weather type based on weather 
-        switch(weather_type){
+    function checkWeatherType(weather_type) {
+        switch (weather_type) {
             case 'Clear':
                 return <Clear />;
 
@@ -69,8 +62,8 @@ function Weather() {
 
     return (
         <div className="flex w-full">
-            { checkWeatherType(weatherType) }
-            <div className="text-4xl font-bold text-gray-300">{cityName ? cityName : 'Raleigh' }</div>
+            {checkWeatherType(weatherType)}
+            <div className="text-4xl font-bold text-gray-300">{cityName ? cityName : 'Raleigh'}</div>
             <div className="text-4xl ml-4 text-gray-300"> ,  {temp ? Math.floor(temp) : '80'} &#8457;</div>
         </div>
     )

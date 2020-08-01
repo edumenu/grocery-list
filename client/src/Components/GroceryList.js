@@ -1,14 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { GlobalContext }  from '../context/GlobalContext';
+import { GlobalContext } from '../context/GlobalContext';
 import GroceryItem from './GroceryItem';
-
 import PropTypes from 'prop-types'
 
 function GroceryList({ historyButton, toggleModalOpen }) {
     const { groceryLists, getGroceryLists, selectedDate } = useContext(GlobalContext);
 
     useEffect(() => {
-        // Calling the grocery list function
         getGroceryLists(selectedDate.toISOString());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -22,7 +20,6 @@ function GroceryList({ historyButton, toggleModalOpen }) {
     )
 }
 
-// Proptype to determine the type of prop being used
 GroceryList.propTypes = {
     historyButton: PropTypes.bool.isRequired,
     toggleModalOpen: PropTypes.func.isRequired,

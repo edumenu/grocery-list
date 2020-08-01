@@ -1,16 +1,15 @@
-import React, {useContext} from 'react'
-import { GlobalContext }  from '../context/GlobalContext';
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext';
 import PropTypes from 'prop-types';
 
 function Modal({ modalOpen, toggleModalOpen, deleteItem }) {
     const { deleteTransaction } = useContext(GlobalContext);
 
-    // Calling this when we delete an item from the grocery list
-    function delete_transaction(deleteItem){
+    function delete_transaction(deleteItem) {
         deleteTransaction(deleteItem._id)
-        toggleModalOpen(deleteItem)    // Closing the modal after deleting
+        toggleModalOpen(deleteItem)
     }
-    
+
 
     return (
         <div className={modalOpen ? "block" : "hidden"}>
@@ -32,7 +31,7 @@ function Modal({ modalOpen, toggleModalOpen, deleteItem }) {
                                 <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-headline"> Delete </h3>
                                 <div className="mt-2">
                                     <p className="text-lg leading-5 text-gray-700">
-                                        Are you sure you want to delete <span className=" text-xl font-bold">{ deleteItem.item }</span>? </p>
+                                        Are you sure you want to delete <span className=" text-xl font-bold">{deleteItem.item}</span>? </p>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +53,6 @@ function Modal({ modalOpen, toggleModalOpen, deleteItem }) {
     )
 }
 
-// Proptype to determine the type of prop being used
 Modal.propTypes = {
     modalOpen: PropTypes.bool.isRequired,
     deleteItem: PropTypes.object.isRequired,

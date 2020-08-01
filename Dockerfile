@@ -10,7 +10,7 @@ COPY ./yarn.lock ./
 
 # Install npm into the container
 RUN yarn install --silent
-RUN yarn add cors --silent
+# RUN yarn add cors --silent
 
 # Add a copy to the root of the app
 COPY . . 

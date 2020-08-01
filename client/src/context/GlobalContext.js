@@ -2,31 +2,98 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer'
 import axios from 'axios'
 
-//Object to store any initial global state
 const initialState = {
+    user_data: {},
     groceryLists: [],
     groceryCount: 0,
     selectedDate: new Date(),
     error: null,
+    login_error: null,
+    signup_error: null,
     weatherError: '',
     loading: true
 }
 
-//Create context
 export const GlobalContext = createContext(initialState);
 
-// Provider component to provide the state to other components
 export const GlobalProvider = ({ children }) => {
-    // An alternative to useState
     // Accepts a reducer of type (state, action) => newState, 
     // and returns the current state paired with a dispatch method
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    // Function to get grocery list items
+    // Get the User information
+    async function checkLoggedIn() {
+        let token = localStorage.getItem("auth-token");
+        if (token === null) {
+            localStorage.setItem("auth-token", undefined)
+            token = ""
+        }
+
+        if (token !== 'undefined') {
+            try {
+                const config = { headers: { 'x-auth-token': token } }
+                const res = await axios.post(`http://localhost:5000/api/v1/user/tokenIsValid`, null, config);
+
+                if (res.data) {
+                    const get_config = {
+                        headers: { "x-auth-token": token }
+                    }
+                    const user_data = await axios.get(`http://localhost:5000/api/v1/user`, get_config)
+                    user_data.data['token'] = token
+                }
+            } catch (err) {
+                dispatch({
+                    type: "ERROR",
+                    payload: err.response
+                })
+            }
+        }
+    }
+
+    // Log the user out
+    function logUserOut() {
+        localStorage.setItem("auth-token", undefined)
+        dispatch({
+            type: "LOGOUT",
+            payload: { token: undefined, id: undefined, displayName: undefined, city: undefined }
+        })
+    }
+
+    // Register a user
+    async function registerUser(displayName, email, city, password) {
+        try {
+            const res = await axios.post(`http://localhost:5000/api/v1/user/registration`, { displayName, email, city, password });
+            if (res.status === 201) loginUser(email, password);
+        } catch (err) {
+            dispatch({
+                type: "SIGNUP_ERROR",
+                payload: err.response.data.message
+            })
+        }
+    }
+
+    // Login user
+    async function loginUser(email, password) {
+        try {
+            const loginRes = await axios.post(`http://localhost:5000/api/v1/user/login`, { email, password });
+            localStorage.setItem("auth-token", loginRes.data.token)
+            dispatch({
+                type: "LOGIN_USER",
+                payload: loginRes.data
+            })
+            if (loginRes.status === 201) ClearLoginError();
+        } catch (err) {
+            dispatch({
+                type: "LOGIN_ERROR",
+                payload: err.response.data.message
+            })
+        }
+    }
+
+    // Get grocery list items
     async function getGroceryLists(createdAt) {
         try {
-            const res = await axios.get(`/api/v1/groceries?createdAt=${createdAt}`);
-            // Getting a list of groceries
+            const res = await axios.get(`http://localhost:5000/api/v1/groceries?createdAt=${createdAt}`);
             dispatch({
                 type: "GET_GROCERIES",
                 payload: res.data.data
@@ -36,7 +103,6 @@ export const GlobalProvider = ({ children }) => {
                 payload: res.data.count
             })
         } catch (err) {
-            // Setting the error message
             dispatch({
                 type: "GROCERY_ERROR",
                 payload: err.response.data.error
@@ -47,16 +113,12 @@ export const GlobalProvider = ({ children }) => {
     // Delete item on the list
     async function deleteTransaction(id) {
         try {
-            // Calling the delete method
-            await axios.delete(`/api/v1/groceries/${id}`);
-            // Deleting an item from the grocery list
+            await axios.delete(`http://localhost:5000/api/v1/groceries/${id}`);
             dispatch({
                 type: "DELETE_GROCERIES",
                 payload: id
             })
-
         } catch (err) {
-            // Setting the error message
             dispatch({
                 type: "GROCERY_ERROR",
                 payload: err.response.data.error
@@ -67,23 +129,15 @@ export const GlobalProvider = ({ children }) => {
     // Add a new grocery item
     async function addTransaction(groceryItem) {
         const config = {
-            // We need a content type for sending data
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         }
-
         try {
-            // Calling the delete method
-            const res = await axios.post(`/api/v1/groceries`, groceryItem, config);
-            // Deleting an item from the grocery list
+            const res = await axios.post(`http://localhost:5000/api/v1/groceries`, groceryItem, config);
             dispatch({
                 type: "ADD_GROCERIES",
                 payload: res.data.data
             })
-
         } catch (err) {
-            // Setting the error message
             dispatch({
                 type: "GROCERY_ERROR",
                 payload: err.response.data.error
@@ -91,7 +145,21 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    //  Fecthhing current weather
+    function ClearLoginError() {
+        dispatch({
+            type: "CLEAR_LOGIN_ERROR",
+            payload: null
+        })
+    }
+
+    function ClearSignupError() {
+        dispatch({
+            type: "CLEAR_SIGNUP_ERROR",
+            payload: null
+        })
+    }
+
+    //  Fetching current weather
     async function currentWeather(city) {
         try {
             const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
@@ -99,7 +167,6 @@ export const GlobalProvider = ({ children }) => {
             localStorage.setItem('weatherCounter', 0);
             // localStorage.removeItem('weatherData');
             // localStorage.removeItem('weatherCounter');
-
         } catch (err) {
             console.log(err)
             dispatch({
@@ -109,13 +176,20 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    // ClobalContext.Provider will wrap all the components(children)
     return (<GlobalContext.Provider value={{
+        user_data: state.user_data,
         groceryLists: state.groceryLists,
-        error: state.error,
+        login_error: state.login_error,
+        signup_error: state.signup_error,
         loading: state.loading,
         groceryCount: state.groceryCount,
         selectedDate: state.selectedDate,
+        checkLoggedIn,
+        logUserOut,
+        registerUser,
+        ClearLoginError,
+        ClearSignupError,
+        loginUser,
         getGroceryLists,
         addTransaction,
         deleteTransaction,
