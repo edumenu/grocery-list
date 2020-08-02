@@ -33,13 +33,13 @@ export const GlobalProvider = ({ children }) => {
         if (token !== 'undefined') {
             try {
                 const config = { headers: { 'x-auth-token': token } }
-                const res = await axios.post(`http://localhost:5000/api/v1/user/tokenIsValid`, null, config);
+                const res = await axios.post(`https://grocery-tracker-react.herokuapp.com/api/v1/user/tokenIsValid`, null, config);
 
                 if (res.data) {
                     const get_config = {
                         headers: { "x-auth-token": token }
                     }
-                    const user_data = await axios.get(`http://localhost:5000/api/v1/user`, get_config)
+                    const user_data = await axios.get(`https://grocery-tracker-react.herokuapp.com/api/v1/user`, get_config)
                     user_data.data['token'] = token
                     dispatch({
                         type: "LOGIN_USER",
@@ -80,7 +80,7 @@ export const GlobalProvider = ({ children }) => {
     // Login user
     async function loginUser(email, password) {
         try {
-            const loginRes = await axios.post(`http://localhost:5000/api/v1/user/login`, { email, password });
+            const loginRes = await axios.post(`https://grocery-tracker-react.herokuapp.com/api/v1/user/login`, { email, password });
             localStorage.setItem("auth-token", loginRes.data.token)
             dispatch({
                 type: "LOGIN_USER",
@@ -98,7 +98,7 @@ export const GlobalProvider = ({ children }) => {
     // Get grocery list items
     async function getGroceryLists(createdAt) {
         try {
-            const res = await axios.get(`http://localhost:5000/api/v1/groceries?createdAt=${createdAt}`);
+            const res = await axios.get(`https://grocery-tracker-react.herokuapp.com/api/v1/groceries?createdAt=${createdAt}`);
             dispatch({
                 type: "GET_GROCERIES",
                 payload: res.data.data
@@ -173,7 +173,7 @@ export const GlobalProvider = ({ children }) => {
     //  Fetching current weather
     async function currentWeather(city) {
         try {
-            const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+            const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
             localStorage.setItem('weatherData', JSON.stringify(res.data));
             localStorage.setItem('weatherCounter', 0);
             // localStorage.removeItem('weatherData');

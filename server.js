@@ -5,7 +5,7 @@ const morgan = require('morgan');   // HTTP request
 const connectDB = require('./config/DB');   // DB connection
 var cors = require('cors')  // Cross origin resources sharing
 
-const app = express();
+const app = express();  // Initializing and setting up express app
 
 app.use(cors())
 
