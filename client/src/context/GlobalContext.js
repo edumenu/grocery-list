@@ -173,7 +173,7 @@ export const GlobalProvider = ({ children }) => {
     //  Fetching current weather
     async function currentWeather(city) {
         try {
-            const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+            const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=raleigh&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
             localStorage.setItem('weatherData', JSON.stringify(res.data));
             localStorage.setItem('weatherCounter', 0);
             // localStorage.removeItem('weatherData');
