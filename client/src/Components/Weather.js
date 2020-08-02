@@ -15,7 +15,7 @@ function Weather() {
     const [weatherType, setWeatherType] = useState('')
 
     useEffect(() => {
-        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 25) {
+        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 5) {
             currentWeather();
         } else {
             getCurrentWeather();
