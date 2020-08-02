@@ -32,14 +32,15 @@ export const GlobalProvider = ({ children }) => {
 
         if (token !== 'undefined') {
             try {
+                const environ_variable = check_environ()
                 const config = { headers: { 'x-auth-token': token } }
-                const res = await axios.post(`https://grocery-tracker-react.herokuapp.com/api/v1/user/tokenIsValid`, null, config);
+                const res = await axios.post(`${environ_variable}/api/v1/user/tokenIsValid`, null, config);
 
                 if (res.data) {
                     const get_config = {
                         headers: { "x-auth-token": token }
                     }
-                    const user_data = await axios.get(`https://grocery-tracker-react.herokuapp.com/api/v1/user`, get_config)
+                    const user_data = await axios.get(`${environ_variable}/api/v1/user`, get_config)
                     user_data.data['token'] = token
                     dispatch({
                         type: "LOGIN_USER",
@@ -67,7 +68,8 @@ export const GlobalProvider = ({ children }) => {
     // Register a user
     async function registerUser(displayName, email, city, password) {
         try {
-            const res = await axios.post(`http://localhost:5000/api/v1/user/registration`, { displayName, email, city, password });
+            const environ_variable = check_environ()
+            const res = await axios.post(`${environ_variable}/api/v1/user/registration`, { displayName, email, city, password });
             if (res.status === 201) loginUser(email, password);
         } catch (err) {
             dispatch({
@@ -80,7 +82,9 @@ export const GlobalProvider = ({ children }) => {
     // Login user
     async function loginUser(email, password) {
         try {
-            const loginRes = await axios.post(`https://grocery-tracker-react.herokuapp.com/api/v1/user/login`, { email, password });
+            const environ_variable = check_environ()
+            console.log(environ_variable)
+            const loginRes = await axios.post(`${environ_variable}/api/v1/user/login`, { email, password });
             localStorage.setItem("auth-token", loginRes.data.token)
             dispatch({
                 type: "LOGIN_USER",
@@ -98,7 +102,8 @@ export const GlobalProvider = ({ children }) => {
     // Get grocery list items
     async function getGroceryLists(createdAt) {
         try {
-            const res = await axios.get(`https://grocery-tracker-react.herokuapp.com/api/v1/groceries?createdAt=${createdAt}`);
+            const environ_variable = check_environ()
+            const res = await axios.get(`${environ_variable}/api/v1/groceries?createdAt=${createdAt}`);
             dispatch({
                 type: "GET_GROCERIES",
                 payload: res.data.data
@@ -118,7 +123,8 @@ export const GlobalProvider = ({ children }) => {
     // Delete item on the list
     async function deleteGroceryItem(id) {
         try {
-            await axios.delete(`http://localhost:5000/api/v1/groceries/${id}`);
+            const environ_variable = check_environ()
+            await axios.delete(`${environ_variable}/api/v1/groceries/${id}`);
             dispatch({
                 type: "DELETE_GROCERIES",
                 payload: id
@@ -137,7 +143,8 @@ export const GlobalProvider = ({ children }) => {
             headers: { 'Content-Type': 'application/json' }
         }
         try {
-            const res = await axios.post(`http://localhost:5000/api/v1/groceries`, groceryItem, config);
+            const environ_variable = check_environ()
+            const res = await axios.post(`${environ_variable}/api/v1/groceries`, groceryItem, config);
             dispatch({
                 type: "ADD_GROCERIES",
                 payload: res.data.data
@@ -168,6 +175,10 @@ export const GlobalProvider = ({ children }) => {
             type: "CLEAR_SIGNUP_ERROR",
             payload: null
         })
+    }
+
+    function check_environ(){
+        return process.env.NODE_ENV === 'production' ? "https://grocery-tracker-react.herokuapp.com" : "http://localhost:5000";
     }
 
     //  Fetching current weather
