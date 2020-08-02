@@ -9,7 +9,6 @@ const app = express();  // Initializing and setting up express app
 
 app.use(cors())
 
-// Setting up express JSON for the middleware
 app.use(express.json());
 
 dotenv.config({ path: './config/config.env' });
