@@ -16,7 +16,7 @@ function Login(props) {
                 <img className="mx-auto my-auto w-24" src={logo} alt="logo" />
                 <h1 className="w-full text-center text-3xl text-gray-300 font-bold mt-4 mb-8">About</h1>
                 <div className="container text-gray-300 text-xl max-w-lg">
-                    This is a weekly tracker that I have been working on in the last month. My girlfriend and I always lost track of how much we spend
+                    This is a weekly tracker that I have been working on in the last month. My girlfriend and I always lose track of how much we spend
                     while in the grocery store, so I decided to build this tracker to keep track.
                 </div>
                 <div className="container text-gray-300 text-xl max-w-lg">
