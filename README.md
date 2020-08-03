@@ -1,6 +1,6 @@
 ## Grocery Tracker
 
-This is a MERN stack application that can track your grocery list for a week. The idea of this applciation is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
+This is a MERN stack application that can track your grocery list for a week. The idea of this application is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
 
 ## Project Status
 
