@@ -32,4 +32,8 @@ if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'))
 }
 
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
