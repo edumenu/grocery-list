@@ -1,6 +1,6 @@
 ## Covid Tracker
 
-This is a MERN application that users can track their grocery lists for a week. The idea of this applciation is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
+This is a MERN application that can track your grocery list for a week. The idea of this applciation is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
 
 ## Project Status
 
@@ -20,21 +20,21 @@ First phase complete, adding more features as needed
 
 ## Installation and Setup Instructions
 
-You can clone this repository. You will need `node`, `npm` and `tailwindcss` installed globally on your machine.  
+You can clone this repository. You will need `node`, `yarn` and `tailwindcss` installed globally on your machine.  
 
 Installation:
 
-`npm install`  
+`yarn install`  
 
 To Run Test Suite:  
 
-`npm test`  
+`yarn test`  
 
-To Start Server:
+To Start the application:
 
-`npm start`  
+Run `yarn run dev` at the root of the folder and this should run both the server and the client application concurrently. To run only the server, you can run `yarn run serve` and to run the react application, you can run `yarn run client`.    
 
-To Visit App:
+To Visit App locally:
 
 `localhost:3000`   
 
