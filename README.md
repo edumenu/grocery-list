@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Grocery Tracker
 
-## Available Scripts
+This is a MERN application that can track your grocery list for a week. The idea of this applciation is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
 
-In the project directory, you can run:
+## Project Status
 
-### `npm start`
+First phase complete, adding more features as needed
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Screen Shot(s)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Example:   
 
-### `npm test`
+![alt text](https://github.com/edumenu/grocery-tracker-react/blob/master/grocery-tracker1.png?raw=true "Login page")
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![alt text](https://github.com/edumenu/grocery-tracker-react/blob/master/grocery-tracker2.png?raw=true "Signup page")
 
-### `npm run build`
+![alt text](https://github.com/edumenu/grocery-tracker-react/blob/master/grocery-tracker3.png?raw=true "Dashboard page")
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![alt text](https://github.com/edumenu/grocery-tracker-react/blob/master/grocery-tracker4.png?raw=true "About page")
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Installation and Setup Instructions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can clone this repository. You will need `node`, `yarn` and `tailwindcss` installed globally on your machine.  
 
-### `npm run eject`
+Installation:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`yarn install`  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To Run Test Suite:  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`yarn test`  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To Start the application:
 
-## Learn More
+Run `yarn run dev` at the root of the folder and this should run both the server and the client application concurrently. To run only the server, you can run `yarn run serve` and to run the react application, you can run `yarn run client`.    
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To Visit App locally:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`localhost:3000`   
 
-### Code Splitting
+#### More information:  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This is a weekly tracker that I have been working on in the last month. My girlfriend and I always lose track of how much we spend while in the grocery store, so I decided to build this tracker to keep track. With this application, I can write down the total amount I want to spend on groceries per day and while I'm in the store, I can keep track of how much I spend and how much I have left. This project also displays the weather at your current location. I used https://openweathermap.org/api API.
 
-### Analyzing the Bundle Size
+I built this project using `create-react-app` boilerplate, then I installed tailwindcss to build the UI. I built a backend with NodeJs and MongoDB as the database. The backend serves the react application with user authentication routes and also all information on grocery lists stored in the database. Context and reducers are used for state management on this react application. The technologies implemented in this project are React, React-Router, JSX, Context, Reducers, tailwindCSS and Express.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For deployment, I connected this repository to Travis CI for continues integration using the travis.yml file and then uploaded it Heroku.
