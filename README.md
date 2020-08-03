@@ -1,10 +1,10 @@
 ## Covid Tracker
 
-This is a react/tailwindcss application used to obtain information on Covid 19 cases in countries all over the world. Here's a link to a live project http://covidtrackerreactapp-env-1.eba-y2hvhh26.us-east-2.elasticbeanstalk.com/
+This is a MERN application that users can track their grocery lists for a week. The idea of this applciation is to sum up a list of all grocery items while shopping to make sure you don't exceed the amount budgeted for and at the end of the week, you have a picture of items you purchased throughout the week. Here's a live project https://grocery-tracker-react.herokuapp.com/
 
 ## Project Status
 
-This project is complete
+First phase complete, adding more features as needed
 
 ## Project Screen Shot(s)
 
