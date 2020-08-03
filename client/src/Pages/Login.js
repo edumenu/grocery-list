@@ -31,17 +31,17 @@ function Login(props) {
                     <div className="mb-8">
                         <label className="block text-gray-300 text-md font-bold mb-2">
                             <span className="text-red-500">&nbsp;*</span>
-                                Email
+                                Email (user@gmail.com)
                             </label>
-                        <input name="username" id="username" value="user@gmail.com" onChange={(e) => setEmail(e.target.value)} placeholder="example@gmail.com" type="email" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                        <input name="username" id="username" onChange={(e) => setEmail(e.target.value)} placeholder="user@gmail.com" type="email" className="card_element2 block pr-10 w-full py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                     </div>
 
                     <div className="mb-8">
                         <label className="block text-gray-300 text-md font-bold mb-2">
                             <span className="text-red-500">&nbsp;*</span>
-                                Password
+                                Password (1234zxcv)
                             </label>
-                        <input name="password" id="password" type="password" value="1234zxcv" onChange={(e) => setPassword(e.target.value)} className="card_element2 block pr-10 w-full py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
+                        <input name="password" id="password" type="password" onChange={(e) => setPassword(e.target.value)} className="card_element2 block pr-10 w-full py-4 px-4 text-gray-300 mb-3 appearance-none leading-tight focus:outline-none focus:border-gray-500 transition duration-500 ease-in-out" />
                     </div>
 
                     <div className="mb-4 text-center">
