@@ -15,13 +15,13 @@ function Weather() {
     const [weatherType, setWeatherType] = useState('')
 
     useEffect(() => {
-        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 5) {
+        if (localStorage.getItem('weatherCounter') === null || localStorage.getItem('weatherCounter') > 15) {
             currentWeather(user_data.city);
         } else {
             getCurrentWeather();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user_data])
+    }, [])
 
     function getCurrentWeather() {
         var weatherCounter = localStorage.getItem('weatherCounter')
